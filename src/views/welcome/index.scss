@@ -1,0 +1,14 @@
+.welcome-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    // 字体是好看的英文字体
+    font-family: 'Lato', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    font-weight: bold;
+    flex-direction: column;
+}

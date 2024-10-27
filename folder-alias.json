@@ -1,0 +1,41 @@
+{
+    "src/assets": {
+        "description": "静态资源"
+    },
+    "public": {
+        "description": "静态资源"
+    },
+    "src/common": {
+        "description": "通用"
+    },
+    "src/components": {
+        "description": "组件"
+    },
+    "src/router": {
+        "description": "路由"
+    },
+    "src/store": {
+        "description": "状态存储"
+    },
+    "src/styles": {
+        "description": "样式"
+    },
+    "src/utils": {
+        "description": "工具"
+    },
+    "src/views": {
+        "description": "页面"
+    },
+    ".gitignore": {
+        "description": "git忽略"
+    },
+    "vite.config.ts": {
+        "description": "vite配置"
+    },
+    "src/main.tsx": {
+        "description": "全局入口"
+    },
+    "src/index.css": {
+        "description": "全局基础样式"
+    }
+}
