@@ -5,7 +5,6 @@
  * @LastEditTime: 2024-10-27 16:54:36
  * @Description: 入口文件
  */
-import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";

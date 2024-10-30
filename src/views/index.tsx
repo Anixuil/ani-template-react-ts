@@ -2,20 +2,21 @@
  * @Author: Anixuil
  * @Date: 2024-10-27 13:47:01
  * @LastEditors: Anixuil
- * @LastEditTime: 2024-10-27 17:19:27
+ * @LastEditTime: 2024-10-30 21:14:49
  * @Description: 入口页面
  */
 import useRouterHooks from "@/hooks/routerHooks";
 import "./index.scss";
-import { Button } from "antd";
+import { Button, notification } from "antd";
 import { Outlet } from "react-router-dom";
 import { SwitchTransition, CSSTransition } from "react-transition-group";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement, push, del } from "@/store/modules/counter";
+import { test } from "@/api/modules/test";
+import { AxiosResponse } from "axios";
 export default function IndexPage() {
   const { goto } = useRouterHooks();
-  // const currentOutlet = useOutlet();
   const nodeRef = React.useRef(null);
 
   const [data, setData] = useState({
@@ -30,8 +31,24 @@ export default function IndexPage() {
 
   const dispatch = useDispatch();
   const { count, list } = useSelector((state: { counter: { count: number; list: [] } }) => state.counter);
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const handleClickTestRequest = async () => {
+    const res: void | AxiosResponse = await test().catch((err) => {
+      api.error({
+        message: '测试请求失败',
+        description: `${err}`,
+      })
+    });    
+    api.success({
+      message: '测试请求成功',
+      description: `${res}`,
+    });
+  };
   return (
     <div id="ani-root">
+      {contextHolder}
       <div className="button-box">
         <Button
           className={["btn-item", data.active === "/welcome" ? "active" : ""].join(" ")}
@@ -44,6 +61,9 @@ export default function IndexPage() {
           onClick={() => handleClick("/about")}
         >
           关于
+        </Button>
+        <Button type="primary" onClick={() => handleClickTestRequest()}>
+          请求测试
         </Button>
       </div>
       <SwitchTransition mode="out-in">
