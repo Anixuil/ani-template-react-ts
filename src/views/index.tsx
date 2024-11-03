@@ -2,7 +2,7 @@
  * @Author: Anixuil
  * @Date: 2024-10-27 13:47:01
  * @LastEditors: Anixuil
- * @LastEditTime: 2024-10-30 21:14:49
+ * @LastEditTime: 2024-11-03 17:47:25
  * @Description: 入口页面
  */
 import useRouterHooks from "@/hooks/routerHooks";
@@ -35,16 +35,18 @@ export default function IndexPage() {
   const [api, contextHolder] = notification.useNotification();
 
   const handleClickTestRequest = async () => {
-    const res: void | AxiosResponse = await test().catch((err) => {
+    try {
+      const res: void | AxiosResponse = await test();
+      api.success({
+        message: "测试请求成功",
+        description: `${res}`,
+      });
+    } catch (err) {
       api.error({
-        message: '测试请求失败',
+        message: "测试请求失败",
         description: `${err}`,
-      })
-    });    
-    api.success({
-      message: '测试请求成功',
-      description: `${res}`,
-    });
+      });
+    }
   };
   return (
     <div id="ani-root">
